@@ -1,0 +1,47 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>FundraiserServlet</servlet-name>
+  	<display-name>FundraiserServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.fssa.sharetorise.servlet.FundraiserServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>AddFundraiser</servlet-name>
+  	<display-name>AddFundraiser</display-name>
+  	<description></description>
+  	<servlet-class>com.fssa.sharetorise.servlet.AddFundraiser</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>test</servlet-name>
+  	<display-name>test</display-name>
+  	<description></description>
+  	<servlet-class>com.fssa.sharetorise.servlet.test</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ytvg</servlet-name>
+  	<display-name>ytvg</display-name>
+  	<description></description>
+  	<servlet-class>com.fssa.sharetorise.servlet.ytvg</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>FundraiserServlet</servlet-name>
+  	<url-pattern>/FundraiserServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AddFundraiser</servlet-name>
+  	<url-pattern>/AddFundraiser</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>test</servlet-name>
+  	<url-pattern>/test</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ytvg</servlet-name>
+  	<url-pattern>/ytvg</url-pattern>
+  </servlet-mapping>
+</web-app>
