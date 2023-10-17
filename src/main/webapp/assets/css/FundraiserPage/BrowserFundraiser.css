@@ -240,9 +240,12 @@ i{
 .supports-last-date-of-fund{
 
     height: 40px;
-      /* border: 2px solid black; */
       display: flex;
       justify-content: space-around;
+      position: relative;
+      top: 30px;
+      right: 10px;
+      
 
 }
 .supports-last-date-of-fund p{

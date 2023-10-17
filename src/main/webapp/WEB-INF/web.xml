@@ -3,45 +3,210 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
-  <servlet>
-  	<servlet-name>FundraiserServlet</servlet-name>
-  	<display-name>FundraiserServlet</display-name>
-  	<description></description>
-  	<servlet-class>com.fssa.sharetorise.servlet.FundraiserServlet</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>AddFundraiser</servlet-name>
-  	<display-name>AddFundraiser</display-name>
-  	<description></description>
-  	<servlet-class>com.fssa.sharetorise.servlet.AddFundraiser</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>test</servlet-name>
-  	<display-name>test</display-name>
-  	<description></description>
-  	<servlet-class>com.fssa.sharetorise.servlet.test</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>ytvg</servlet-name>
-  	<display-name>ytvg</display-name>
-  	<description></description>
-  	<servlet-class>com.fssa.sharetorise.servlet.ytvg</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>FundraiserServlet</servlet-name>
-  	<url-pattern>/FundraiserServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>AddFundraiser</servlet-name>
-  	<url-pattern>/AddFundraiser</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>test</servlet-name>
-  	<url-pattern>/test</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>ytvg</servlet-name>
-  	<url-pattern>/ytvg</url-pattern>
-  </servlet-mapping>
+	<display-name>Archetype Created Web Application</display-name>
+	<servlet>
+		<servlet-name>FundraiserServlet</servlet-name>
+		<display-name>FundraiserServlet</display-name>
+		<description></description>
+		<servlet-class>com.fssa.sharetorise.servlet.FundraiserServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>AddFundraiser</servlet-name>
+		<display-name>AddFundraiser</display-name>
+		<description></description>
+		<servlet-class>com.fssa.sharetorise.servlet.AddFundraiser</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>test</servlet-name>
+		<display-name>test</display-name>
+		<description></description>
+		<servlet-class>com.fssa.sharetorise.servlet.test</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ytvg</servlet-name>
+		<display-name>ytvg</display-name>
+		<description></description>
+		<servlet-class>com.fssa.sharetorise.servlet.ytvg</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>RegisterServlet</servlet-name>
+		<display-name>RegisterServlet</display-name>
+		<description></description>
+		<servlet-class>com.fssa.sharetorise.servlet.RegisterServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>LoginServlet</servlet-name>
+		<display-name>LoginServlet</display-name>
+		<description></description>
+		<servlet-class>com.fssa.sharetorise.servlet.LoginServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>PlayerDetailsServlet</servlet-name>
+		<display-name>PlayerDetailsServlet</display-name>
+		<description></description>
+		<servlet-class>com.fssa.sharetorise.servlet.PlayerDetailsServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>profileServlet</servlet-name>
+		<display-name>profileServlet</display-name>
+		<description></description>
+		<servlet-class>com.fssa.sharetorise.servlet.profileServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>LogoutServlet</servlet-name>
+		<display-name>LogoutServlet</display-name>
+		<description></description>
+		<servlet-class>com.fssa.sharetorise.servlet.LogoutServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>DonateFund</servlet-name>
+		<display-name>DonateFund</display-name>
+		<description></description>
+		<servlet-class>com.fssa.sharetorise.servlet.DonateFund</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>profileUpdate</servlet-name>
+		<display-name>profileUpdate</display-name>
+		<description></description>
+		<servlet-class>com.fssa.sharetorise.servlet.profileUpdate</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>yourFundraiser</servlet-name>
+		<display-name>yourFundraiser</display-name>
+		<description></description>
+		<servlet-class>com.fssa.sharetorise.servlet.yourFundraiser</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>DeleteServelt</servlet-name>
+		<display-name>DeleteServelt</display-name>
+		<description></description>
+		<servlet-class>com.fssa.sharetorise.servlet.DeleteServelt</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>DeleteServlet</servlet-name>
+		<display-name>DeleteServlet</display-name>
+		<description></description>
+		<servlet-class>com.fssa.sharetorise.servlet.DeleteServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>UpdateServlet</servlet-name>
+		<display-name>UpdateServlet</display-name>
+		<description></description>
+		<servlet-class>com.fssa.sharetorise.servlet.UpdateServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>UpdateFundraiserServlet</servlet-name>
+		<display-name>UpdateFundraiserServlet</display-name>
+		<description></description>
+		<servlet-class>com.fssa.sharetorise.servlet.UpdateFundraiserServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FundraiserServlet</servlet-name>
+		<url-pattern>/FundraiserServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddFundraiser</servlet-name>
+		<url-pattern>/AddFundraiser</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>test</servlet-name>
+		<url-pattern>/test</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ytvg</servlet-name>
+		<url-pattern>/ytvg</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RegisterServlet</servlet-name>
+		<url-pattern>/RegisterServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>LoginServlet</servlet-name>
+		<url-pattern>/LoginServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>PlayerDetailsServlet</servlet-name>
+		<url-pattern>/PlayerDetailsServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>profileServlet</servlet-name>
+		<url-pattern>/profileServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>LogoutServlet</servlet-name>
+		<url-pattern>/LogoutServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DonateFund</servlet-name>
+		<url-pattern>/DonateFund</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>profileUpdate</servlet-name>
+		<url-pattern>/profileUpdate</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>yourFundraiser</servlet-name>
+		<url-pattern>/yourFundraiser</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DeleteServlet</servlet-name>
+		<url-pattern>/DeleteServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UpdateServlet</servlet-name>
+		<url-pattern>/UpdateServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UpdateFundraiserServlet</servlet-name>
+		<url-pattern>/UpdateFundraiserServlet</url-pattern>
+	</servlet-mapping>
+
+	<error-page>
+		<!-- <exception-type>java.lang.Exception</exception-type> For handling 
+			exceptions -->
+		<error-code>404</error-code> <!-- HTTP Error code Page Not found -->
+		<location>/page-not-found.jsp</location>
+	</error-page>
+	<error-page>
+		<!-- <exception-type>java.lang.Exception</exception-type> For handling 
+			exceptions -->
+		<error-code>500</error-code> <!-- HTTP Error code Page Not found -->
+		<location>/page-not-found.jsp</location>
+	</error-page>
+	<error-page>
+		<!-- <exception-type>java.lang.Exception</exception-type> For handling 
+			exceptions -->
+		<error-code>501</error-code> <!-- HTTP Error code Page Not found -->
+		<location>/page-not-found.jsp</location>
+	</error-page>
+	<error-page>
+		<!-- <exception-type>java.lang.Exception</exception-type> For handling 
+			exceptions -->
+		<error-code>401</error-code> <!-- HTTP Error code Page Not found -->
+		<location>/page-not-found.jsp</location>
+	</error-page>
+	<error-page>
+		<!-- <exception-type>java.lang.Exception</exception-type> For handling 
+			exceptions -->
+		<error-code>502</error-code> <!-- HTTP Error code Page Not found -->
+		<location>/page-not-found.jsp</location>
+	</error-page>
+	<error-page>
+		<!-- <exception-type>java.lang.Exception</exception-type> For handling 
+			exceptions -->
+		<error-code>503</error-code> <!-- HTTP Error code Page Not found -->
+		<location>/page-not-found.jsp</location>
+	</error-page>
+	<error-page>
+		<!-- <exception-type>java.lang.Exception</exception-type> For handling 
+			exceptions -->
+		<error-code>504</error-code> <!-- HTTP Error code Page Not found -->
+		<location>/page-not-found.jsp</location>
+	</error-page>
+	<error-page>
+		<!-- <exception-type>java.lang.Exception</exception-type> For handling 
+			exceptions -->
+		<error-code>599</error-code> <!-- HTTP Error code Page Not found -->
+		<location>/page-not-found.jsp</location>
+	</error-page>
 </web-app>
