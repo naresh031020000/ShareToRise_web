@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="com.fssa.sharetorise.model.FundRaiser"%>
+<%@ page import="org.json.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,6 +24,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+	<script>
+		let getUpdatecertificate;
+		let getUpdateVideos;
+		</script>
 	<!-- Header -->
 	<jsp:include page="header.jsp"></jsp:include>
 
@@ -164,7 +170,20 @@
 
 		String sport = fund.getCategory().toString().toLowerCase();
 		String startDate = fund.getFundEndingDate().toString();
+
+		JSONArray certJson = new JSONArray(fund.getCertificate());
+		JSONArray videoJson = new JSONArray(fund.getVideo());
+
+		String certStr = certJson.toString();
+		String videoStr = videoJson.toString();
 		%>
+
+		<script>
+		getUpdatecertificate = '<%=certStr%>';
+		getUpdateVideos = '<%=videoStr%>';
+		</script>
+
+
 		<form method="post"
 			action="<%=request.getContextPath()%>/UpdateFundraiserServlet"
 			id="raise_fund">
@@ -332,28 +351,77 @@
 
 
 	<script>
+	
+	window.onload = removeitems();
+	
+	let cer_output = "";
+	
+	let video_output = "";
+	
+	let video_append_div = document.querySelector(".display_video_list");
+	
+	let cer_append_div = document.querySelector(".display_cer_list");
+	
+	let certificate_list;
+	
+	let videos_list;
+	
+	let raise_fund_div = document.getElementById("raise_fund");
+	
+	if(getUpdatecertificate){
+		
+		
+		localStorage.setItem("certificate_list",  getUpdatecertificate);
+		certificate_list = JSON.parse(localStorage.getItem("certificate_list")) ?? [] ;
+		displaycer();
+		
+		
+	}
+	
+	if(getUpdateVideos){
+		
+		 localStorage.setItem("videos_list",  getUpdateVideos);
+		 videos_list = JSON.parse(localStorage.getItem("videos_list")) ?? [] ;
+		 displaycer_videos();
+		 
+	}
+	
+
+certificate_list = JSON.parse(localStorage.getItem("certificate_list")) ?? [] ;
+
+videos_list = JSON.parse(localStorage.getItem("videos_list")) ?? [] ;
+
+let certificate_button = document.getElementById("Add_certificates");
+let certificate_whole_div = document.getElementById("certificate_whole_div");
+
+let video_button = document.getElementById("Add_videos");
+let video_whole_div = document.getElementById("video_whole_div");
+
+let cross_mark = document.getElementById("cross_mark");
+
+let cross_mark1 = document.getElementById("cross_mark1");
+
+let certificate_image_url = document.getElementById("certificate_image_url");
+let cerficate_number = document.getElementById("certificate_number");
 
 
-window.onload = removeitems();
+let cer_form = document.getElementById("add_button");
+
+
+
+let video_url = document.getElementById("videos_url")
+let video_form = document.getElementById("add_video_button");
+
+
+
+
 
 function removeitems() {
-
     localStorage.removeItem("certificate_list");
     localStorage.removeItem("videos_list");
 }
-let certificate_list = JSON.parse(localStorage.getItem("certificate_list")) ?? [] ;
 
-let videos_list = JSON.parse(localStorage.getItem("videos_list")) ?? [] ;
 
-//--------------------------------- function for add certificate button----------------------------------------
-
-let certificate_button = document.getElementById("Add_certificates")
-let certificate_whole_div = document.getElementById("certificate_whole_div")
-
-//--------------------------------- function for add certificate button----------------------------------------
-
-let video_button = document.getElementById("Add_videos")
-let video_whole_div = document.getElementById("video_whole_div")
 
 video_button.addEventListener("click", e => {
 	video_whole_div.style.display = "block"
@@ -369,7 +437,7 @@ certificate_button.addEventListener("click", e => {
 
 //--------------------------------- function for cross mark----------------------------------------
 
-let cross_mark = document.getElementById("cross_mark")
+
 
 cross_mark.addEventListener("click", e => {
 
@@ -379,7 +447,7 @@ cross_mark.addEventListener("click", e => {
     })
     
     
-    let cross_mark1 = document.getElementById("cross_mark1")
+   
 
 cross_mark1.addEventListener("click", e => {
     video_whole_div.style.display="none";
@@ -388,17 +456,7 @@ cross_mark1.addEventListener("click", e => {
     })
 //--------------------------------- function for cross mark----------------------------------------
 
-let certificate_image_url = document.getElementById("certificate_image_url")
-let cerficate_number = document.getElementById("certificate_number")
 
-
-
-
-let cer_form = document.getElementById("add_button");
-
-let cer_append_div = document.querySelector(".display_cer_list");
-
-let cer_output = "";
 
 
 cer_form.addEventListener("click", e => {
@@ -439,12 +497,7 @@ cer_form.addEventListener("click", e => {
 
 });
 
-let video_url = document.getElementById("videos_url")
-let video_form = document.getElementById("add_video_button");
 
-let video_append_div = document.querySelector(".display_video_list");
-
-let video_output = "";
 
 
 video_form.addEventListener("click", e => {
@@ -482,11 +535,13 @@ video_form.addEventListener("click", e => {
     }
 
 });
-let raise_fund_div=document.getElementById("raise_fund")
 
 function displaycer_videos() {
-
-    video_output = "";
+ 
+	
+    video_output = " ";
+    
+    video_append_div.innerHTML = " ";
 
     let count = 0;
 
@@ -494,16 +549,29 @@ function displaycer_videos() {
 
         ++count;
 
-        video_output += `<p>${item.videoUrl}</p>`
-        	raise_fund_div.setAttribute("action","AddFundraiserServlet?certificate_img_urls="+encodeURIComponent(JSON.stringify(certificate_list))+"&video_urls="+encodeURIComponent(JSON.stringify(videos_list)))
+        video_output += ` <div class="cer_item">
+            <div class="items_cert"><p>Video ${count}<p> <span onclick="deletevideo(${index})">&#128465</span></div>
+            <iframe width="auto" height="auto" src=${item.videoUrl}>
+            </iframe>
+        </div>`
+        	if(videos_list){
+            	
+            	raise_fund_div.setAttribute("action","UpdateFundraiserServlet?certificate_img_urls="+encodeURIComponent(JSON.stringify(certificate_list))+"&video_urls="+encodeURIComponent(JSON.stringify(videos_list)))
+            }else {
+            	
+            	raise_fund_div.setAttribute("action","AddFundraiserServlet?certificate_img_urls="+encodeURIComponent(JSON.stringify(certificate_list))+"&video_urls="+encodeURIComponent(JSON.stringify(videos_list)))
+            }
     video_append_div.innerHTML = video_output
     });
+    
 
 }
 function displaycer() {
 
-    cer_output = "";
+    cer_output = " ";
 
+    cer_append_div.innerHTML = " ";
+    
     let count = 0;
 
     certificate_list.forEach((item, index) => {
@@ -515,13 +583,19 @@ function displaycer() {
         <img src="${item.cerUrl}" alt="Certificate number"${item.cerNum}>
     </div>`
     
-    raise_fund_div.setAttribute("action","AddFundraiserServlet?certificate_img_urls="+encodeURIComponent(JSON.stringify(certificate_list))+"&video_urls="+encodeURIComponent(JSON.stringify(videos_list)))
+    if(getUpdatecertificate){
+    	
+    	raise_fund_div.setAttribute("action","UpdateFundraiserServlet?certificate_img_urls="+encodeURIComponent(JSON.stringify(certificate_list))+"&video_urls="+encodeURIComponent(JSON.stringify(videos_list)))
+    }else {
+    	
+    	raise_fund_div.setAttribute("action","AddFundraiserServlet?certificate_img_urls="+encodeURIComponent(JSON.stringify(certificate_list))+"&video_urls="+encodeURIComponent(JSON.stringify(videos_list)))
+    }
+    
 
         cer_append_div.innerHTML = cer_output
     });
 
 }
-
 
 
 function deletecer(index) {
@@ -531,11 +605,25 @@ function deletecer(index) {
     localStorage.setItem("certificate_list", JSON.stringify(certificate_list));
 
     alert("deleted succes");
+    
+    certificate_list = JSON.parse(localStorage.getItem("certificate_list")) ?? [];
 
     displaycer();
+    
 
+}
 
+function deletevideo(index){
+	videos_list.splice(index,1);
+	
+	localStorage.setItem("videos_list", JSON.stringify(videos_list));
 
+    alert("deleted succes");
+    
+    videos_list = JSON.parse(localStorage.getItem("videos_list")) ?? [] ;
+
+    displaycer_videos();
+	
 }
 
 </script>
