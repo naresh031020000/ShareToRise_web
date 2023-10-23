@@ -56,11 +56,12 @@
 					<li><a href="AddFundraiser.jsp"> <span
 							class="las la-user-alt"></span> <small>RAISE FUND</small>
 					</a></li>
-					<li><a href="page-not-found.jsp"> <span
-							class="las la-envelope"></span> <small>DONATIONS</small>
-					</a></li>
 					<li><a href="<%=request.getContextPath()%>/yourFundraiser">
 							<span class="las la-clipboard-list"></span> <small>FUNDRAISERS</small>
+					<li><a href="yourDonations.jsp"> <span
+							class="las la-envelope"></span> <small>DONATIONS</small>
+					</a></li>
+					
 					</a></li>
 					<!--  <li>
             <a href="../profile/chat.html">
@@ -126,7 +127,7 @@
 							<button class="button_form " id="save_change_button">Save
 								changes</button>
 							<button class="button_form " id="del_button">
-								<a href=<%=request.getContextPath()%> /LogoutServlet1>LogOut</a>
+								<a href="<%=request.getContextPath()%>/LogoutServlet1">LogOut</a>
 							</button>
 						</div>
 

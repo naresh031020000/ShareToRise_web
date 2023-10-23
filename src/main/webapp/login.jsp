@@ -34,7 +34,7 @@
 				<%
 				String errorMsg = (String) request.getAttribute("error");
 				%>
-				<p class="text-center" ><%=errorMsg != null ? errorMsg : ""%></p>
+   				<p class="text-center" style="color: red;"><%= errorMsg != null ? errorMsg : "" %></p>
 
 				<input type="email" id="email" placeholder="&#xf007;  email"
 					value="naresh@gmail.com" name="useremail" title="hi" required>

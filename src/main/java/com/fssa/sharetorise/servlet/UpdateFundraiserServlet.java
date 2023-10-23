@@ -52,7 +52,10 @@ public class UpdateFundraiserServlet extends HttpServlet {
 		String sports_type = request.getParameter("selected_option2");
 
 		String certificate_img_arr = request.getParameter("certificate_img_urls");
-		String[] video_arr = (String[]) request.getParameterValues("video_urls");
+		String video_arr = request.getParameter("video_urls");
+
+		System.out.println(certificate_img_arr);
+		System.out.println(video_arr);
 
 		// to convert string to array
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -69,7 +72,7 @@ public class UpdateFundraiserServlet extends HttpServlet {
 		if (video_arr != null) {
 
 			// video urls
-			Video[] video_objects = objectMapper.readValue(video_arr[0], Video[].class);
+			Video[] video_objects = objectMapper.readValue(video_arr, Video[].class);
 
 			for (Video obj : video_objects) {
 				videoList.add(obj);

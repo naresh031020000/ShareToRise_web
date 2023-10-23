@@ -114,6 +114,16 @@ header .cta{
   /* margin-left: 370px; */
 }
 
+.nav__links li a .button_form1{
+	  background-color: #15c4c4;
+  color: white;
+  border: none;
+  border-radius:10px ;
+  padding: 10px;
+	
+	}
+
+
 /* Mobile Nav */
 
 /* .menu {

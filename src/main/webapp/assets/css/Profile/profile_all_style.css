@@ -98,6 +98,24 @@
     transition: margin-left 300ms;
     /* border: 1px solid yellow; */
 }
+
+
+.nav__links li a .button_form1{
+	  background-color: #15c4c4;
+  color: white;
+  border: none;
+  border-radius:10px ;
+  padding: 10px;
+	
+	}
+.button_form1 {
+    background-color: #15c4c4;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    /* margin-left: 370px; */
+}
 /* #menu-toggle:checked ~ .sidebar  {
     width: 60px;
 }

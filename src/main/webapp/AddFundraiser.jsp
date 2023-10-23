@@ -46,9 +46,11 @@
 							<small>PROFILE</small></a></li>
 					<li><a href="#" class="active"> <span
 							class="las la-user-alt"></span> <small>RAISE FUND</small></a></li>
-					<li><a href="#"> <span class="las la-envelope"></span> <small>DONATIONS</small></a></li>
-					<li><a href="yourFundraiser.jsp"> <span
+							
+								<li><a href="yourFundraiser.jsp"> <span
 							class="las la-clipboard-list"></span> <small>FUNDRAISERS</small></a></li>
+					<li><a href="yourDonations.jsp"> <span class="las la-envelope"></span> <small>DONATIONS</small></a></li>
+				
 				</ul>
 			</div>
 		</div>
@@ -370,7 +372,6 @@
 	
 	if(getUpdatecertificate){
 		
-		
 		localStorage.setItem("certificate_list",  getUpdatecertificate);
 		certificate_list = JSON.parse(localStorage.getItem("certificate_list")) ?? [] ;
 		displaycer();
@@ -482,11 +483,10 @@ cer_form.addEventListener("click", e => {
         
         var formCerElement = document.getElementById("form_creation_fundraiser");
         formCerElement.classList.remove("background_blur");
-        console.log(JSON.stringify(certificate_list))
+        console.log(JSON.stringify(certificate_list));
         console.log(encodeURIComponent(JSON.stringify(certificate_list)))
 
         displaycer();
-
     }
 
     else {
@@ -554,7 +554,7 @@ function displaycer_videos() {
             <iframe width="auto" height="auto" src=${item.videoUrl}>
             </iframe>
         </div>`
-        	if(videos_list){
+        	if(getUpdateVideos){
             	
             	raise_fund_div.setAttribute("action","UpdateFundraiserServlet?certificate_img_urls="+encodeURIComponent(JSON.stringify(certificate_list))+"&video_urls="+encodeURIComponent(JSON.stringify(videos_list)))
             }else {
@@ -590,7 +590,7 @@ function displaycer() {
     	
     	raise_fund_div.setAttribute("action","AddFundraiserServlet?certificate_img_urls="+encodeURIComponent(JSON.stringify(certificate_list))+"&video_urls="+encodeURIComponent(JSON.stringify(videos_list)))
     }
-    
+   
 
         cer_append_div.innerHTML = cer_output
     });
@@ -607,6 +607,22 @@ function deletecer(index) {
     alert("deleted succes");
     
     certificate_list = JSON.parse(localStorage.getItem("certificate_list")) ?? [];
+    
+ if(getUpdatecertificate){
+    	
+    	raise_fund_div.setAttribute("action","UpdateFundraiserServlet?certificate_img_urls="+encodeURIComponent(JSON.stringify(certificate_list))+"&video_urls="+encodeURIComponent(JSON.stringify(videos_list)))
+    }else {
+    	
+    	raise_fund_div.setAttribute("action","AddFundraiserServlet?certificate_img_urls="+encodeURIComponent(JSON.stringify(certificate_list))+"&video_urls="+encodeURIComponent(JSON.stringify(videos_list)))
+    }
+ 
+ if(getUpdateVideos){
+ 	
+ 	raise_fund_div.setAttribute("action","UpdateFundraiserServlet?certificate_img_urls="+encodeURIComponent(JSON.stringify(certificate_list))+"&video_urls="+encodeURIComponent(JSON.stringify(videos_list)))
+ }else {
+ 	
+ 	raise_fund_div.setAttribute("action","AddFundraiserServlet?certificate_img_urls="+encodeURIComponent(JSON.stringify(certificate_list))+"&video_urls="+encodeURIComponent(JSON.stringify(videos_list)))
+ }
 
     displaycer();
     
@@ -614,6 +630,7 @@ function deletecer(index) {
 }
 
 function deletevideo(index){
+	
 	videos_list.splice(index,1);
 	
 	localStorage.setItem("videos_list", JSON.stringify(videos_list));
@@ -621,9 +638,25 @@ function deletevideo(index){
     alert("deleted succes");
     
     videos_list = JSON.parse(localStorage.getItem("videos_list")) ?? [] ;
+    
+    
+ if(getUpdatecertificate){
+    	
+    	raise_fund_div.setAttribute("action","UpdateFundraiserServlet?certificate_img_urls="+encodeURIComponent(JSON.stringify(certificate_list))+"&video_urls="+encodeURIComponent(JSON.stringify(videos_list)))
+    }else {
+    	
+    	raise_fund_div.setAttribute("action","AddFundraiserServlet?certificate_img_urls="+encodeURIComponent(JSON.stringify(certificate_list))+"&video_urls="+encodeURIComponent(JSON.stringify(videos_list)))
+    }
+ 
+ if(getUpdateVideos){
+ 	
+ 	raise_fund_div.setAttribute("action","UpdateFundraiserServlet?certificate_img_urls="+encodeURIComponent(JSON.stringify(certificate_list))+"&video_urls="+encodeURIComponent(JSON.stringify(videos_list)))
+ }else {
+ 	
+ 	raise_fund_div.setAttribute("action","AddFundraiserServlet?certificate_img_urls="+encodeURIComponent(JSON.stringify(certificate_list))+"&video_urls="+encodeURIComponent(JSON.stringify(videos_list)))
+ }
 
     displaycer_videos();
-	
 }
 
 </script>

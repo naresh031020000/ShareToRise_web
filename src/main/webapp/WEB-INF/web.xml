@@ -100,6 +100,18 @@
 		<description></description>
 		<servlet-class>com.fssa.sharetorise.servlet.UpdateFundraiserServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>DonationCreation</servlet-name>
+		<display-name>DonationCreation</display-name>
+		<description></description>
+		<servlet-class>com.fssa.sharetorise.servlet.DonationCreation</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>YourDonation</servlet-name>
+		<display-name>YourDonation</display-name>
+		<description></description>
+		<servlet-class>com.fssa.sharetorise.servlet.YourDonation</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>FundraiserServlet</servlet-name>
 		<url-pattern>/FundraiserServlet</url-pattern>
@@ -159,6 +171,14 @@
 	<servlet-mapping>
 		<servlet-name>UpdateFundraiserServlet</servlet-name>
 		<url-pattern>/UpdateFundraiserServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DonationCreation</servlet-name>
+		<url-pattern>/DonationCreation</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>YourDonation</servlet-name>
+		<url-pattern>/YourDonation</url-pattern>
 	</servlet-mapping>
 
 	<error-page>

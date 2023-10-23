@@ -47,6 +47,7 @@ public class LoginServlet extends HttpServlet {
 			User user = userservice.login(useremail, userpassword);
 			
 			if(user != null) {
+				
 			HttpSession session = request.getSession();
 			session.setAttribute("obj",user);
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
@@ -59,7 +60,7 @@ public class LoginServlet extends HttpServlet {
 			else {
 
 				request.setAttribute("error","Invalid credentials: Email or password is incorrect!!!");
-				request.getRequestDispatcher("login.jsp").forward(request, response);
+				request.getRequestDispatcher("/login.jsp").forward(request, response);
 			}
 		}
 		catch(InvalidInputException | DAOException  e) {

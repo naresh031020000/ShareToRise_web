@@ -20,6 +20,10 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/assets/css/index.css">
 
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
 <style type="text/css">
 .main_title {
 	margin: 30px;
@@ -445,18 +449,24 @@ input::-webkit-inner-spin-button {
 	FundRaiser fundraiser = (FundRaiser) request.getAttribute("fundraiser");
 	int id = (Integer) (request.getAttribute("emer_id"));
 	System.out.println("hiurl");
-	int supporters_count=(int) request.getAttribute("count");
+	int supporters_count = (int) request.getAttribute("count");
 	System.out.println(supporters_count);
 
 	double raisedAmount = (Double) (request.getAttribute("raisedAmount"));
 	System.out.println(raisedAmount);
 
 	boolean isArrived = fundraiser != null ? true : false;
-	
+
 	int days_left = (int) request.getAttribute("days");
 	System.out.println(days_left);
 	%>
 
+	<script>
+	
+	let fundraiserId = '<%=id%>';
+	let days = '<%=days_left%>';
+	
+	</script>
 
 
 	<div class="container" id="main_.container">
@@ -486,7 +496,7 @@ input::-webkit-inner-spin-button {
 			<hr>
 			<div class="about_content" id="about_content">
 				<h3 id="aboutheading">About The Fundraisers</h3>
-				<p id="aboutpara"><%=fundraiser.getDescription() %></p>
+				<p id="aboutpara"><%=fundraiser.getDescription()%></p>
 			</div>
 			<div class="certificates">
 				<h3 id="certificates_heading">Achievements</h3>
@@ -562,11 +572,11 @@ input::-webkit-inner-spin-button {
 				raised of <strong> <span>&#8377</span><%=fundraiser.getFundingGoal()%>
 				</strong> goal
 			</p>
-			
+
 			<%
-			double progressPercent = (raisedAmount /fundraiser.getFundingGoal()) * 100;
+			double progressPercent = (raisedAmount / fundraiser.getFundingGoal()) * 100;
 			%>
-			
+
 			<div class="supporterbar">
 				<div class="progress"
 					style="background-color: rgba(1, 191, 189, 0.3);">
@@ -576,8 +586,12 @@ input::-webkit-inner-spin-button {
 					</div>
 				</div>
 				<div class="suporters">
-					<p id="suporters1"><%=supporters_count%>  Supporters</p>
-					<p><%=days_left%> days left</p>
+					<p id="suporters1"><%=supporters_count%>
+						Supporters
+					</p>
+					<p><%=days_left%>
+						days left
+					</p>
 				</div>
 			</div>
 			<div class="sponsercard">
@@ -591,94 +605,167 @@ input::-webkit-inner-spin-button {
 	</div>
 
 
-	<form class="deposit_form" id="contribute_form"
-		action="./DonateFund?fundRaiserId=<%=id%>" method="post">
+
+
+	<form class="deposit_form" id="contribute_form">
 		<h2>
 			Donate Money <img
-				src="../../assets/images/fundraiser_images/payment_images/donate_image.png"
+				src="<%=request.getContextPath()%>/assets/Images/fundraiser_images/payment_images/donate_image.png"
 				alt="img"> <span id="cross_mark"> &#10060;</span>
 		</h2>
 		<hr class="hr">
 		<div class="step1">
 			<p>
-				<span>1</span>Enter the amount
+				<span>1</span> Enter the amount
 			</p>
 			<input type="number" id="deposit_amount" min="1" name="amount"
-				placeholder="0" 
+				placeholder="0"
 				oninvalid="setCustomValidity('Please enter a valid amount')"
-				oninput="setCustomValidity('')"
-				required>
+				oninput="" required>
 		</div>
-		<div class="step2">
+
+		<%
+		if (request.getSession(false).getAttribute("obj") == null) {
+		%>
+		<div class="step1">
 			<p>
-				<span>2</span>Select the payment method
+				<span>1</span> Enter the mobile number
 			</p>
-			<div class="step2_list">
-				<div class="card">
-					<img src="../images/card.png" alt="img"> Card
-				</div>
-				<div class="netbanking">
-					<img src="../images/netbanking.jpg" alt="img"> Netbanking
-				</div>
-				<div class="gpay">
-					<img
-						src="../../assets/images/fundraiser_images/payment_images/gpay.png"
-						alt="img"> Gpay
-				</div>
-				<div class="phonepe">
-					<img
-						src="../../assets/images/fundraiser_images/payment_images/phonepe.png"
-						alt="img"> Phonepe
-				</div>
-				<div class="paytm">
-					<img
-						src="../../assets/images/fundraiser_images/payment_images/paytm.png"
-						alt="img"> Paytm
-				</div>
-			</div>
+			<input type="tel" id="mobile-number"
+				placeholder="Enter Your Mobile Number" required="true"
+				pattern="^[6-9][0-9]{9}$" minlength="10" maxlength="10"
+				title="Please enter valid mobile number without alphabets, special characters and white spaces">
 		</div>
-		
-		
-	
-		
-		        <button type="submit"  id="send_request">send</button>
-		
+
+		<%
+		}
+		%>
+
+		<button type="submit" id="send_request">Pay Now</button>
 	</form>
 
-
-
 	<script type="text/javascript">
-	
-	
-
-   
 
     //--------------------------------- function for add certificate button----------------------------------------
-    let contribute_form = document.getElementById("contribute_form")
-
-    let contribute_btn = document.getElementById("contribute")
-
-
-    contribute_btn.addEventListener("click", e => {
-        contribute_form.style.display = "block"
-    })
+    let contribute_form = document.getElementById("contribute_form");
+    let contribute_btn = document.getElementById("contribute");
+    
+    
+    
+    contribute_btn.addEventListener("click", (e) => {
+        contribute_form.style.display = "block";
+    });
 
     //--------------------------------- function for cross mark----------------------------------------
+    let cross_mark = document.getElementById("cross_mark");
+    cross_mark.addEventListener("click", (e) => {
+        contribute_form.style.display = "none";
+    });
 
-    let cross_mark = document.getElementById("cross_mark")
-
-    cross_mark.addEventListener("click", e => {
-        contribute_form.style.display = "none"
-        // $("#form_creation_fundraiser").removeClass("background_blur")
-    })
-
+    let amount = document.getElementById("deposit_amount");
+    let orderCreation = "http://localhost:8080/sharetorise-web/DonationCreation";
+    let donateServlet = "http://localhost:8080/sharetorise-web/DonateFund";
+    
+    contribute_form.addEventListener("submit", async (e) => {
+    	
+    	let mobile = document.getElementById("mobile-number");
+        
+        let mobVal;
+        
+        if(mobile){
+        	
+        	mobVal = mobile.value;
+        	
+        }else {
+        	
+        	mobVal = null;
+        }
+    	
+    	e.preventDefault();
+    	
+        let res = amount.value;
+        
+        if(res < 1){
+        	
+        alert("Invalid amount");
+      
+        return;
+     }
    
-    </script>
+   
+    const paymentId = await openCheckOut(res);
+    
+        if (paymentId) {
+        
+            alert("Success");
+            
+            try {
+            	
+            	const response = await axios.post(donateServlet + "?fundRaiserId=" + fundraiserId + "&days=" + days + "&amount=" + res + "&id=" + paymentId + "&phone=" + mobVal);
+            	
+            	if(response.data.trim() == "success"){
+            		
+            		location.reload();
+            	}
+            	
 
-	<script src="../../assets/JS/profile.js/header.js"></script>
+            }catch(error){
+            	
+            	alert(error);
+            }
+            
+        }else {
+        	
+        	alert("Cancelled");
+        }
+        
+        
+    });
 
+    async function CreateOrderId(amount) {
+        try {
+            const response = await axios.post(orderCreation + "?amount=" + amount);
+            return response.data.trim();
+        } catch (error) {
+            alert(error);
+        }
+    }
 
-	<script src="../../assets/JS/fundraiser_page/url_params_fundraiser.js"></script>
+    async function openCheckOut(amount) {
+        try {
+            const order_id = await CreateOrderId(amount);
+            return new Promise((resolve, reject) => {
+                let options = {
+                    "key": "", // Add your Razorpay API key here
+                    "amount": amount * 100,
+                    "currency": "INR",
+                    "name": "Share to rise",
+                    "description": "Test Transaction",
+                    "image": "assets/Images/header/logo_main.png", // Corrected the image source
+                    "order_id": order_id,
+                    "handler": function (response) {
+                        if (typeof response.razorpay_payment_id === 'undefined' || response.razorpay_payment_id < 1) {
+                            reject('Payment failed: ' + response.error.description);
+                        } else {
+                            resolve(response.razorpay_payment_id);
+                        }
+                    },
+                    "theme": {
+                        "color": "#15c4c4"
+                    }
+                };
+                let rzp1 = new Razorpay(options);
+                rzp1.on('payment.failed', function (response) {
+                    reject('Payment failed: ' + response.error.description);
+                });
+                rzp1.open();
+            });
+        } catch (error) {
+            alert(error);
+        }
+    }
+</script>
+
 </body>
 
 </html>

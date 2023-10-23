@@ -7,6 +7,8 @@
 <%@ page import="com.fssa.sharetorise.model.FundRaiser"%>
 <%@ page import="com.fssa.sharetorise.service.FundraiserService"%>
 
+
+<%@ page import="java.util.stream.Collectors" %>
 <%@ page import="com.fssa.sharetorise.model.User"%>
 <%@ page import="com.fssa.sharetorise.logger.Logger"%>
 <!DOCTYPE html>
@@ -61,6 +63,7 @@
 
 			<%
 			User obj = (User) session.getAttribute("obj");
+			
 
 			if (obj != null) {
 			%>
@@ -81,8 +84,11 @@
 		<div class="card-fundraisers">
 
 			<div class="seacrh-funraisers">
-				<input type="search" id="searchbar"
-					placeholder="Search for fundraisers">
+			
+			<form >
+				<input type="search" name="searchTerm" id="searchbar" placeholder="Search for fundraisers">
+				<button>Search</button>
+			</form>
 				<p>
 					<i class="fa-solid fa-magnifying-glass"></i>
 				</p>
@@ -118,6 +124,27 @@
 				<%
 				PrintWriter outer = response.getWriter();
 				List<FundRaiser> allFund = (List<FundRaiser>) request.getAttribute("FundraiserList");// req from Fundraiserservlet
+							
+				String searchTerm = request.getParameter("searchTerm");
+
+				if(searchTerm != null && !searchTerm.isEmpty()){
+					allFund = allFund.stream()
+					        .filter(fundRaiser -> fundRaiser.getTitle().toLowerCase().contains(searchTerm.toLowerCase()))
+					        .collect(Collectors.toList());
+				}
+				else{%>
+				
+				<h1>No fundraisers</h1>
+				<p>hello</p>
+				
+				<!-- <script type="text/javascript">
+					alert("Not Found");
+					console.log("notfound")
+				</script> -->
+				
+				<%
+				System.out.print("dfdf");
+				}
  
 				FundraiserService service = new FundraiserService();
 			

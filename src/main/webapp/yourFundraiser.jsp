@@ -66,21 +66,21 @@
 
 			<div class="side-menu">
 				<ul>
-					<li><a href="profile_detail.html"> <span
-							class="las la-home"></span> <small>PROFILE</small>
+					<li><a href="profile.jsp"> <span class="las la-home"></span>
+							<small>PROFILE</small>
 					</a></li>
 					<li><a href="AddFundraiser.jsp"> <span
 							class="las la-user-alt"></span> <small>RAISE FUND</small>
 					</a></li>
-					<li><a href="#"> <span class="las la-envelope"></span> <small>DONATIONS</small>
-					</a></li>
+					
 					<li><a href="yourFundraiser.jsp" class="active"> <span
 							class="las la-clipboard-list"></span> <small>FUNDRAISERS</small>
 					</a></li>
-
-					<li><a href="#"> <span class="las la-tasks"></span> <small>ABOUT</small>
+					<li><a href="yourDonations.jsp"> <span class="las la-envelope"></span> <small>DONATIONS</small>
 					</a></li>
+					
 
+					
 				</ul>
 			</div>
 		</div>
@@ -180,11 +180,11 @@
 						}
 						%>
 
-						<div class="notification_show" id="notification_show">
+						<!-- <div class="notification_show" id="notification_show">
 							<p class="message" id="message">Donations</p>
 							<hr>
 							<div class="notify_containing_div" id="notify_containing_div"></div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 		</main>

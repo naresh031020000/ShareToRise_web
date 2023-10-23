@@ -31,10 +31,6 @@ public class AddFundraiser extends HttpServlet {
 
 	FundraiserServlet readAll = new FundraiserServlet();
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -55,7 +51,6 @@ public class AddFundraiser extends HttpServlet {
 		LocalDate daysLeft = LocalDate.parse(request.getParameter("days_left"));
 		String description = request.getParameter("add_description");
 		String sports_type = request.getParameter("selected_option2");
-
 		String certificate_img_arr = request.getParameter("certificate_img_urls");
 		String[] video_arr = (String[]) request.getParameterValues("video_urls");
 

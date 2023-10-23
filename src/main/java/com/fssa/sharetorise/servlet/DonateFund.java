@@ -27,13 +27,19 @@ public class DonateFund extends HttpServlet {
 
 		int fundRaiserId = Integer.parseInt(request.getParameter("fundRaiserId"));
 		Double amount = Double.parseDouble(request.getParameter("amount"));
-		
+		String phone = request.getParameter("phone");
+		String razor = request.getParameter("id");
+		String days_left = (String) request.getParameter("days");
+
+		System.out.println(phone);
+
 		if (user != null) {
 
 			try {
 
-				if (fundraiserService.donateFundint(amount, user.getUserId(), fundRaiserId)) {
+				if (fundraiserService.donateFundint(amount, user.getUserId(), fundRaiserId, null, razor, false)) {
 					System.out.println("Donated Successful");
+					response.getWriter().write("success");
 				} else {
 					System.out.println("Donated failed");
 				}
@@ -43,13 +49,14 @@ public class DonateFund extends HttpServlet {
 				e.printStackTrace();
 			}
 
-			response.sendRedirect("./PlayerDetailsServlet?emer_id=" + fundRaiserId);
-
 		} else {
-			System.out.println("login first  user :" + user);
-			request.setAttribute("error", "Login/ session timeout");
-			RequestDispatcher rd = request.getRequestDispatcher("./login.jsp");
-			rd.forward(request, response);
+
+			if (fundraiserService.donateFundint(amount, 0, fundRaiserId, phone, razor, true)) {
+				System.out.println("Donated Successful");
+				response.getWriter().write("success");
+			} else {
+				System.out.println("Donated failed");
+			}
 		}
 
 	}

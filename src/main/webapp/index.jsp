@@ -71,7 +71,7 @@
 	</div>
 
 
-	<a href="pages/profile/profile_detail.html"></a>
+	<a href="pages/profile/profile.jsp"></a>
 	<!-------------------------About Sports funding---------------------------------------->
 
 
